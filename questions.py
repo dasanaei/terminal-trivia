@@ -12,7 +12,6 @@ class questions:
             newDiff = "medium"
         elif difficulty == '3':
             newDiff = "hard"
-
         if category == '1':
             interval = random.randint(1,2)
             if interval == 1:
@@ -23,8 +22,6 @@ class questions:
                     if randomCatNum != 101:
                         break
             category = chr(randomCatNum)
-
-        
         if category == '2':
             newCat = '9'
         if category == '3':
@@ -56,8 +53,10 @@ class questions:
         with urllib.request.urlopen(api) as url:
             data = json.loads(url.read().decode())
         #print(data)
+        questionArry = []
         for question in data['results']:
-            print(question['question'].replace("&quot;", "").replace("&#039;", "'").replace("&shy;;", "-"))
+            questionArry.append(question['question'].replace("&quot;", "").replace("&#039;", "'").replace("&shy;;", "-"))
+        print(questionArry)
 
 
 
