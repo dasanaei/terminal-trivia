@@ -1,8 +1,7 @@
-import time
-import os
-import platform
 from helpers import helpers 
-
+import msvcrt
+from msvcrt import getch
+import time
 
 
 class intro():
@@ -35,4 +34,10 @@ class intro():
 
     def menu():
         helpers.clearScrean()
+        print("Please select one of the following options:")
+        print("[1] Start Trivia")
+        print("[2] View Statistics")
+        print("[3] About")
+        print("[e] Exit")
+        return ord(getch())
         
