@@ -1,7 +1,7 @@
 from helpers import helpers
 from questions import questions
 from intro import intro 
-import msvcrt
+import msvcrt, time
 from msvcrt import getch
 
 
@@ -32,10 +32,11 @@ if choice == 49:    ## Play the game
         difficulty = ord(getch())
         if (difficulty >= 49 and difficulty <= 51):
             break
-        if category == 101:
+        if difficulty == 101:
             quit()
-
+        
     selectedQuestions = questions(chr(category), chr(difficulty))
+    
 
 elif choice == 50:      ## View statistics screen
     print("test1")

@@ -5,6 +5,7 @@ import urllib.request
 
 class questions:
     def __init__(self, category, difficulty):
+        print("Initializing Game..")
         helpers.clearScreen()
         if difficulty == '1':
             newDiff = "easy"
@@ -48,15 +49,29 @@ class questions:
             newCat = '26'
         if category == 'f':
             newCat = '31'
-        print(newCat, newDiff)
+        #print(newCat, newDiff)
         api = "https://opentdb.com/api.php?amount=10&category=" + newCat + "&difficulty=" + newDiff + "&type=multiple"
         with urllib.request.urlopen(api) as url:
             data = json.loads(url.read().decode())
         #print(data)
         questionArry = []
+        correctAnswerArry = []
+        wrongAnswerArry = []
         for question in data['results']:
-            questionArry.append(question['question'].replace("&quot;", "").replace("&#039;", "'").replace("&shy;;", "-"))
+            questionArry.append(question['question'].replace("&quot;", "").replace("&#039;", "'").replace("&shy;;", "-").replace("&ldquo;", "\"").replace("&rdquo;", "\""))
         print(questionArry)
 
+        for correctAnswer in data['results']:
+            correctAnswerArry.append(correctAnswer['correct_answer'].replace("&quot;", "").replace("&#039;", "'").replace("&shy;;", "-").replace("&ldquo;", "\"").replace("&rdquo;", "\""))
+        print("\n", correctAnswerArry)
 
+        for wrongAnswer in data['results']:
+            wrongAnswerArry.append(wrongAnswer['incorrect_answers'])
 
+        for i in range(len(wrongAnswerArry)):
+            for j in range(len(wrongAnswerArry[i])):
+                wrongAnswerArry[i][j].replace("&quot;", "").replace("&#039;", "'").replace("&shy;;", "-").replace("&ldquo;", "\"").replace("&rdquo;", "\"")
+
+        print("\n", wrongAnswerArry)
+
+        
