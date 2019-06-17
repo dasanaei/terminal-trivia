@@ -1,5 +1,7 @@
 from helpers import helpers
 import random
+import urllib, json
+import urllib.request
 
 class questions:
     def __init__(self, category, difficulty):
@@ -51,6 +53,11 @@ class questions:
             newCat = '31'
         
         api = "https://opentdb.com/api.php?amount=10&category=" + newCat + "&difficulty=" + newDiff + "&type=multiple"
-        print(api)
+        with urllib.request.urlopen(api) as url:
+            data = json.loads(url.read().decode())
+        #print(data)
+        for question in data['results']:
+            print(question['question'])
+
 
 
