@@ -1,5 +1,41 @@
 from helpers import helpers
-#import score import score
-#from questions import questions
+from intro import intro 
+from helpers import _Getch
+import msvcrt
 
-helpers.test()
+
+intro.intro()
+intro.menu()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
+test = msvcrt.getch()
+print(test)
+'''
