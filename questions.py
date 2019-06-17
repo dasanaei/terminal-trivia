@@ -51,13 +51,13 @@ class questions:
             newCat = '26'
         if category == 'f':
             newCat = '31'
-        
+        print(newCat, newDiff)
         api = "https://opentdb.com/api.php?amount=10&category=" + newCat + "&difficulty=" + newDiff + "&type=multiple"
         with urllib.request.urlopen(api) as url:
             data = json.loads(url.read().decode())
         #print(data)
         for question in data['results']:
-            print(question['question'])
+            print(question['question'].replace("&quot;", "").replace("&#039;", "'").replace("&shy;;", "-"))
 
 
 
