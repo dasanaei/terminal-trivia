@@ -76,7 +76,18 @@ class questions:
         #print("\n", wrongAnswerArry)
         time.sleep(2)
     def getQuestion(i):
-        return questionArry[i]
+        return questionArry[i] 
 
-    #def getAnswers(i):
+    def getCorrectAnswer(i):
+        return correctAnswerArry[i]
+
+    def getAnswers(i):
+        randIndex = random.randint(0,3)
+        print(randIndex)
+        answerArry = wrongAnswerArry[i]
+        insertAnswer = correctAnswerArry[i]
+        print(insertAnswer)
+        answerArry.insert(randIndex, insertAnswer)
+        return answerArry
+        
         

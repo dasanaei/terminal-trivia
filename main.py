@@ -18,7 +18,8 @@ if choice == 49:    ## Play the game
     while 1:
         helpers.clearScreen()
         print("Select Category")
-        print(" [1] Random Category \n [2] General Knowledge \n [3] Books \n [4] Film \n [5] Musicals/Theater \n [6] Television \n [7] Math \n [8] Geography \n [9] Sports \n [a] History \n [b] Politics \n [c] Art \n [d] Trash \n [f] Japanese Anime and Manga")
+        print(" [1] Random Category \n [2] General Knowledge \n [3] Books \n [4] Film \n [5] Musicals/Theater \n [6] Television \n [7] Math \
+            \n [8] Geography \n [9] Sports \n [a] History \n [b] Politics \n [c] Art \n [d] Trash \n [f] Japanese Anime and Manga")
         category = ord(getch())
         if (category >= 49 and category <= 57) or (category >= 97 and category <= 100) or category == 102:
             break
@@ -41,7 +42,10 @@ if choice == 49:    ## Play the game
     helpers.clearScreen()
     for i in range(10):
         print(questions.getQuestion(i))
-
+        answers = questions.getAnswers(i)
+        for j in range(4):
+           print(str(j+1) + ". " + answers[j])
+        time.sleep(1)
 elif choice == 50:      ## View statistics screen
     print("test1")
 
