@@ -53,16 +53,16 @@ class questions:
         api = "https://opentdb.com/api.php?amount=10&category=" + newCat + "&difficulty=" + newDiff + "&type=multiple"
         with urllib.request.urlopen(api) as url:
             data = json.loads(url.read().decode())
-        #print(data)
+        print(data)
         questionArry = []
         correctAnswerArry = []
         wrongAnswerArry = []
         for question in data['results']:
-            questionArry.append(question['question'].replace("&quot;", "").replace("&#039;", "'").replace("&shy;;", "-").replace("&ldquo;", "\"").replace("&rdquo;", "\""))
-        print(questionArry)
+            questionArry.append(helpers.replaceHTML(question['question']))
+        print("\n", questionArry)
 
         for correctAnswer in data['results']:
-            correctAnswerArry.append(correctAnswer['correct_answer'].replace("&quot;", "").replace("&#039;", "'").replace("&shy;;", "-").replace("&ldquo;", "\"").replace("&rdquo;", "\""))
+            correctAnswerArry.append(helpers.replaceHTML(correctAnswer['correct_answer']))
         print("\n", correctAnswerArry)
 
         for wrongAnswer in data['results']:
@@ -70,7 +70,7 @@ class questions:
 
         for i in range(len(wrongAnswerArry)):
             for j in range(len(wrongAnswerArry[i])):
-                wrongAnswerArry[i][j].replace("&quot;", "").replace("&#039;", "'").replace("&shy;;", "-").replace("&ldquo;", "\"").replace("&rdquo;", "\"")
+                helpers.replaceHTML(wrongAnswerArry[i][j])
 
         print("\n", wrongAnswerArry)
 
