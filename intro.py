@@ -33,7 +33,7 @@ class intro():
         time.sleep(2)
 
     def menu():
-        helpers.clearScrean()
+        helpers.clearScreen()
         print("Please select one of the following options:")
         print("[1] Start Trivia")
         print("[2] View Statistics")
