@@ -36,7 +36,11 @@ if choice == 49:    ## Play the game
             quit()
         
     selectedQuestions = questions(chr(category), chr(difficulty))
-    
+    print("Press Any Key to Start the Game")
+    getch()
+    helpers.clearScreen()
+    for i in range(10):
+        print(questions.getQuestion(i))
 
 elif choice == 50:      ## View statistics screen
     print("test1")
