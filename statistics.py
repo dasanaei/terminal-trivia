@@ -1,9 +1,7 @@
-category = None
-difficulty = None
+#category = None
+#difficulty = None
 class statistics:
     def __init__(self, cat, diff):
-        global category 
-        global difficulty
         category = cat
         difficulty = diff
     def record(correct, points, speed):

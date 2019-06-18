@@ -6,6 +6,7 @@ import time
 
 class intro():
     def intro():
+        helpers.clearScreen()
         print("                                                           ")
         print("                                                           ")
         print("                                                           ")
@@ -38,6 +39,7 @@ class intro():
         print("[1] Start Trivia")
         print("[2] View Statistics")
         print("[3] About")
+        print("[q] Speed Run")
         print("[e] Exit")
         return ord(getch())
         

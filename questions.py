@@ -2,12 +2,13 @@ from helpers import helpers
 import random, time
 import urllib, json
 import urllib.request
-questionArry = []
-correctAnswerArry = []
-wrongAnswerArry = []
+
 
 class questions:
     def __init__(self, category, difficulty):
+        self.questionArry = []
+        self.correctAnswerArry = []
+        self.wrongAnswerArry = []
         helpers.clearScreen()
         print("Initializing Game...\n")
         if difficulty == '1':
@@ -59,35 +60,33 @@ class questions:
         #print(data)
 
         for question in data['results']:
-            questionArry.append(helpers.replaceHTML(question['question']))
-        #print("\n", questionArry)
+            self.questionArry.append(helpers.replaceHTML(question['question']))
+       # print("\n", self.questionArry)
 
         for correctAnswer in data['results']:
-            correctAnswerArry.append(helpers.replaceHTML(correctAnswer['correct_answer']))
-        #print("\n", correctAnswerArry)
+            self.correctAnswerArry.append(helpers.replaceHTML(correctAnswer['correct_answer']))
+        #print("\n", self.correctAnswerArry)
 
         for wrongAnswer in data['results']:
-            wrongAnswerArry.append(wrongAnswer['incorrect_answers'])
+            self.wrongAnswerArry.append(wrongAnswer['incorrect_answers'])
 
-        for i in range(len(wrongAnswerArry)):
-            for j in range(len(wrongAnswerArry[i])):
-                wrongAnswerArry[i][j] = helpers.replaceHTML(wrongAnswerArry[i][j])
+        for i in range(len(self.wrongAnswerArry)):
+            for j in range(len(self.wrongAnswerArry[i])):
+                self.wrongAnswerArry[i][j] = helpers.replaceHTML(self.wrongAnswerArry[i][j])
 
-        #print("\n", wrongAnswerArry)
+       # print("\n", self.wrongAnswerArry)
         time.sleep(2)
-    def getQuestion(i):
-        return questionArry[i] 
+    def getQuestion(self,i):
+        return self.questionArry[i] 
 
-    def getCorrectAnswer(i):
-        return correctAnswerArry[i]
+    def getCorrectAnswer(self,i):
+        return self.correctAnswerArry[i]
 
-    def getAnswers(i):
+    def getAnswers(self,i):
         randIndex = random.randint(0,3)
-        print(randIndex)
-        answerArry = wrongAnswerArry[i]
-        insertAnswer = correctAnswerArry[i]
-        print(insertAnswer)
+        answerArry = self.wrongAnswerArry[i]
+        insertAnswer = self.correctAnswerArry[i]
         answerArry.insert(randIndex, insertAnswer)
-        return answerArry
+        return [answerArry, randIndex]
         
         

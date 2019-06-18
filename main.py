@@ -1,8 +1,10 @@
 from helpers import helpers
 from questions import questions
+from score import score
 from intro import intro 
-import msvcrt, time
+import msvcrt
 from msvcrt import getch
+import time
 
 
 intro.intro()
@@ -10,10 +12,12 @@ while 1:
     choice = intro.menu()
     if (choice >= 49 and choice <= 51) or choice == 101:
         break
-        
 
+speedRun = False  
+if choice == 113:
+    speedRun = True
 
-if choice == 49:    ## Play the game
+if choice == 49 or speedRun:    ## Play the game
 
     while 1:
         helpers.clearScreen()
@@ -35,17 +39,42 @@ if choice == 49:    ## Play the game
             break
         if difficulty == 101:
             quit()
-        
+
     selectedQuestions = questions(chr(category), chr(difficulty))
+    gameScore = score()
     print("Press Any Key to Start the Game")
     getch()
     helpers.clearScreen()
     for i in range(10):
-        print(questions.getQuestion(i))
-        answers = questions.getAnswers(i)
+        print(selectedQuestions.getQuestion(i))
+        answers = selectedQuestions.getAnswers(i)
         for j in range(4):
-           print(str(j+1) + ". " + answers[j])
-        time.sleep(1)
+           print(str(j+1) + ". " + answers[0][j])
+        start = time.time()
+        while 1:
+            selectedIndexAscii = ord(getch())
+            if selectedIndexAscii >= 49 and selectedIndexAscii <= 52:
+                selectedIndex = int(chr(selectedIndexAscii))
+                break
+            if selectedIndexAscii == 101:
+                quit()
+        end = time.time()
+        answerTime = end - start
+        correct = gameScore.getCorrect(answers[1], selectedIndex)
+        currentScore = gameScore.calculateScore(correct, answerTime)
+        gameScore.updateScore(currentScore)
+        if not speedRun:
+            helpers.clearScreen()
+            if correct:
+                print("CORRECT +" + str(currentScore) + " points")
+                print("Total Score: " + str(gameScore.getTotalScore()))
+            else:
+                print("INCORRECT " + str(currentScore) + " points")
+                print("Correct Answer is: " + selectedQuestions.getCorrectAnswer(i))
+                print("Total Score: " + str(gameScore.getTotalScore()))
+            time.sleep(1)
+            helpers.clearScreen()
+
 elif choice == 50:      ## View statistics screen
     print("test1")
 
