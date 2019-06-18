@@ -3,5 +3,5 @@ import urllib.request
 from msvcrt import getch
 
 
-test = int(getch())
+test = int("1")
 print(test)

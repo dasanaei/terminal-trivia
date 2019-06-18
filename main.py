@@ -10,7 +10,7 @@ import time
 intro.intro()
 while 1:
     choice = intro.menu()
-    if (choice >= 49 and choice <= 51) or choice == 101:
+    if (choice >= 49 and choice <= 51) or choice == 101 or choice == 113:
         break
 
 speedRun = False  
@@ -54,14 +54,14 @@ if choice == 49 or speedRun:    ## Play the game
         while 1:
             selectedIndexAscii = ord(getch())
             if selectedIndexAscii >= 49 and selectedIndexAscii <= 52:
-                selectedIndex = int(chr(selectedIndexAscii))
+                selectedIndex = (int(chr(selectedIndexAscii)) - 1)
                 break
             if selectedIndexAscii == 101:
                 quit()
         end = time.time()
-        answerTime = end - start
+        speed = end - start
         correct = gameScore.getCorrect(answers[1], selectedIndex)
-        currentScore = gameScore.calculateScore(correct, answerTime)
+        currentScore = gameScore.calculateScore(correct, speed)
         gameScore.updateScore(currentScore)
         if not speedRun:
             helpers.clearScreen()
@@ -72,8 +72,20 @@ if choice == 49 or speedRun:    ## Play the game
                 print("INCORRECT " + str(currentScore) + " points")
                 print("Correct Answer is: " + selectedQuestions.getCorrectAnswer(i))
                 print("Total Score: " + str(gameScore.getTotalScore()))
-            time.sleep(1)
+            #print(selectedIndex, answers, selectedQuestions.getCorrectAnswer(i))
+            print("Press Any Key To Continue")
+            getch()
             helpers.clearScreen()
+        else:
+            helpers.clearScreen()
+    print("Your Final Score is: " + str(gameScore.getTotalScore()))
+
+
+
+
+
+    
+    getch()
 
 elif choice == 50:      ## View statistics screen
     print("test1")
