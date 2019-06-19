@@ -14,3 +14,5 @@ class statistics:
         print("test")
     def inDepth():
         print("test")
+    def getGameTotals():
+        print("test")
