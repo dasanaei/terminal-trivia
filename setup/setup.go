@@ -1,16 +1,21 @@
 package main
 
-import "os"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
-	dir := "C:/%ProgramFiles%/trivia"
-	CreateDirIfNotExist(dir)
+	winSetup()
+	fmt.Printf("TEST")
 }
 
 func winSetup() {
-	dir := "C:/%ProgramFiles%/trivia"
+	dir, _ := os.UserHomeDir()
+	dir = dir + "\\astral-kuarry"
+	fmt.Println(dir)
 	if CreateDirIfNotExist(dir) {
-
+		fmt.Print("sucess")
 	}
 }
 
