@@ -2,10 +2,11 @@ from helpers import helpers
 from questions import questions
 from score import score
 from intro import intro 
+from statistics import statistics
 import msvcrt
 from msvcrt import getch
 import time
-
+import sys
 
 
 def runTrivia():
@@ -26,7 +27,7 @@ def runTrivia():
             if (category >= 49 and category <= 57) or (category >= 97 and category <= 100) or category == 102:
                 break
             if category == 101:
-                quit()     
+                sys.exit()     
         while 1: 
             helpers.clearScreen()
             print("Select Difficulty")
@@ -35,12 +36,13 @@ def runTrivia():
             if (difficulty >= 49 and difficulty <= 51):
                 break
             if difficulty == 101:
-                quit()
+                sys.exit()
         selectedQuestions = questions(chr(category), chr(difficulty))
         gameScore = score()
         print("Press Any Key to Start the Game")
         getch()
         helpers.clearScreen()
+        gameStats = statistics(chr(category), chr(difficulty))
         for i in range(10):
             print(selectedQuestions.getQuestion(i))
             answers = selectedQuestions.getAnswers(i)
@@ -53,12 +55,13 @@ def runTrivia():
                     selectedIndex = (int(chr(selectedIndexAscii)) - 1)
                     break
                 if selectedIndexAscii == 101:
-                    quit()
+                    sys.exit()
             end = time.time()
             speed = end - start
             correct = gameScore.getCorrect(answers[1], selectedIndex)
             currentScore = gameScore.calculateScore(correct, speed)
             gameScore.updateScore(currentScore)
+            gameStats.record(correct, speed)
             if not speedRun:
                 helpers.clearScreen()
                 if correct:
@@ -74,9 +77,10 @@ def runTrivia():
                 helpers.clearScreen()
             else:
                 helpers.clearScreen()
+        gameStats.endGameRecord(gameScore.getTotalScore(), 10)
         print("Your Final Score is: " + str(gameScore.getTotalScore()))
         print("High Score: " )
-
+        
 
     elif choice == 50:      ## View statistics screen
         print("test1")
@@ -91,7 +95,7 @@ def runTrivia():
 
 
     elif choice == 101:
-        quit()
+        sys.exit()
 
 
 
