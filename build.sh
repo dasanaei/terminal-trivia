@@ -1,0 +1,1 @@
+pyinstaller --onefile --icon=images/icon.ico --clean terminal-trivia.py
