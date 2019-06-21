@@ -10,13 +10,9 @@ import (
 )
 
 func main() {
-	winSetup()
-}
-
-func winSetup() {
 	homeDir, _ := os.UserHomeDir()
-	triviaDir := homeDir + "\\astral-kuarry\\trivia"
-	dataDir := triviaDir + "\\data"
+	triviaDir := homeDir + "/astral-kuarry/trivia"
+	dataDir := triviaDir + "/data"
 	ex, err := os.Executable()
 	if err != nil {
 		panic(err)
@@ -28,10 +24,9 @@ func winSetup() {
 	CreateDirIfNotExist(dataDir)
 	CopyDir(dist, triviaDir)
 	CopyDir(data, dataDir)
-	oldLocation := triviaDir + "\\main.exe"
-	newLocation := homeDir + "\\trivia.exe"
-	os.Rename(oldLocation, newLocation)
-
+	oldLocation := triviaDir + "/main.exe"
+	newLocation := homeDir + "/trivia.exe"
+	CopyFile(oldLocation, newLocation)
 }
 
 func getCommandOutput(cmd *exec.Cmd) string {
@@ -123,28 +118,4 @@ func CopyDir(source string, dest string) (err error) {
 
 	}
 	return
-}
-func copy(src, dst string) (int64, error) {
-	sourceFileStat, err := os.Stat(src)
-	if err != nil {
-		return 0, err
-	}
-
-	if !sourceFileStat.Mode().IsRegular() {
-		return 0, fmt.Errorf("%s is not a regular file", src)
-	}
-
-	source, err := os.Open(src)
-	if err != nil {
-		return 0, err
-	}
-	defer source.Close()
-
-	destination, err := os.Create(dst)
-	if err != nil {
-		return 0, err
-	}
-	defer destination.Close()
-	nBytes, err := io.Copy(destination, source)
-	return nBytes, err
 }
