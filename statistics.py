@@ -36,7 +36,6 @@ class statistics:
             gameData = [float(rows[len(rows) - 10][1])]
             for i in range(len(rows) - 9, len(rows)):
                 gameData.append(float(rows[i][1]))  
-        #print(gameData)
         totalTime = sum(gameData)    
         endGameData = [totalScore, totalTime]
         with open(self.dataDir, 'a', newline='') as f:

@@ -44,7 +44,7 @@ def runTrivia():
         helpers.clearScreen()
         gameStats = statistics(chr(category), chr(difficulty))
         for i in range(10):
-            print(selectedQuestions.getQuestion(i))
+            print("Q" + str(i+1) + ". " + selectedQuestions.getQuestion(i) + "\n")
             answers = selectedQuestions.getAnswers(i)
             for j in range(4):
                 print(str(j+1) + ". " + answers[0][j])
