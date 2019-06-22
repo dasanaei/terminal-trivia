@@ -2,13 +2,14 @@ from helpers import helpers
 import random, time
 import urllib, json
 import urllib.request
-
+import sys
 
 class questions:
     def __init__(self, category, difficulty):
         self.questionArry = []
         self.correctAnswerArry = []
         self.wrongAnswerArry = []
+        self.valid = True
         helpers.clearScreen()
         print("Initializing Game...\n")
         if difficulty == '1':
@@ -57,8 +58,10 @@ class questions:
         api = "https://opentdb.com/api.php?amount=10&category=" + newCat + "&difficulty=" + newDiff + "&type=multiple"
         with urllib.request.urlopen(api) as url:
             data = json.loads(url.read().decode())
-        #print(data)
-
+        #print(data['response_code'])
+        if data['response_code'] == 1:
+            self.valid = False
+            return
         for question in data['results']:
             self.questionArry.append(helpers.replaceHTML(question['question']))
        # print("\n", self.questionArry)
@@ -88,5 +91,6 @@ class questions:
         insertAnswer = self.correctAnswerArry[i]
         answerArry.insert(randIndex, insertAnswer)
         return [answerArry, randIndex]
-        
+    def checkAPI(self):
+        return self.valid
         

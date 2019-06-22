@@ -19,25 +19,30 @@ def runTrivia():
         speedRun = True
     if choice == 49 or speedRun:    ## Play the game
         while 1:
-            helpers.clearScreen()
-            print("Select Category")
-            print(" [1] Random Category \n [2] General Knowledge \n [3] Books \n [4] Film \n [5] Musicals/Theater \n [6] Television \n [7] Math \
-                \n [8] Geography \n [9] Sports \n [a] History \n [b] Politics \n [c] Art \n [d] Trash \n [f] Japanese Anime and Manga")
-            category = ord(getch())
-            if (category >= 49 and category <= 57) or (category >= 97 and category <= 100) or category == 102:
+            while 1:
+                helpers.clearScreen()
+                print("Select Category")
+                print(" [1] Random Category \n [2] General Knowledge \n [3] Books \n [4] Film \n [5] Musicals/Theater \n [6] Television \n [7] Math \
+                    \n [8] Geography \n [9] Sports \n [a] History \n [b] Politics \n [c] Art \n [d] Trash \n [f] Japanese Anime and Manga")
+                category = ord(getch())
+                if (category >= 49 and category <= 57) or (category >= 97 and category <= 100) or category == 102:
+                    break
+                if category == 101:
+                    sys.exit()     
+            while 1: 
+                helpers.clearScreen()
+                print("Select Difficulty")
+                print(" [1] Easy \n [2] Medium \n [3] Hard")
+                difficulty = ord(getch())
+                if (difficulty >= 49 and difficulty <= 51):
+                    break
+                if difficulty == 101:
+                    sys.exit()
+            selectedQuestions = questions(chr(category), chr(difficulty))
+            if selectedQuestions.checkAPI():
                 break
-            if category == 101:
-                sys.exit()     
-        while 1: 
-            helpers.clearScreen()
-            print("Select Difficulty")
-            print(" [1] Easy \n [2] Medium \n [3] Hard")
-            difficulty = ord(getch())
-            if (difficulty >= 49 and difficulty <= 51):
-                break
-            if difficulty == 101:
-                sys.exit()
-        selectedQuestions = questions(chr(category), chr(difficulty))
+            print("This category/difficulty is currently unavailable. Pick something else.")
+            time.sleep(2)
         gameScore = score()
         print("Press Any Key to Start the Game")
         getch()

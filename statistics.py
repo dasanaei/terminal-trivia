@@ -58,9 +58,7 @@ class statistics:
                 if rows[i][0] == '~' and rows[i+12][0] != "DNF" and int(rows[i+12][0]) > highScore:
                     highScore = int(rows[i+12][0])
         return highScore
-    def getAverageScore(self):
-        print("test")
-    def getAverageTime(self):
+    def getAveragese(self):
         print("test")
     def getFavoriteInits(self):
         print("test")
