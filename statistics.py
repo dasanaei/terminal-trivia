@@ -9,6 +9,7 @@ class statistics:
         self.category = cat
         self.difficulty = diff
         self.dataDir = str(Path.home()) + "/astral-kuarry/trivia/data/data.csv"
+        print(self.dataDir)
         with open(self.dataDir) as csvfile:
             dataArry = csv.reader(csvfile, delimiter=',')
             for row in dataArry:
@@ -26,25 +27,51 @@ class statistics:
         questionData = [correct, speed]
         with open(self.dataDir, 'a', newline='') as f:
             writer = csv.writer(f)
-            writer.writerow(questionData)
+            writer.writerow(questionData) 
             f.close()
-    def endGameRecord(self, totalScore, totalTime):
+    def endGameRecord(self, totalScore):
+        with open(self.dataDir) as csvfile:
+            dataArry = csv.reader(csvfile, delimiter=',')
+            rows = list(dataArry)
+            gameData = [float(rows[len(rows) - 10][1])]
+            for i in range(len(rows) - 9, len(rows)):
+                gameData.append(float(rows[i][1]))  
+        #print(gameData)
+        totalTime = sum(gameData)    
         endGameData = [totalScore, totalTime]
         with open(self.dataDir, 'a', newline='') as f:
             writer = csv.writer(f)
             writer.writerow(endGameData)
             f.close()
-    def endGameEarly():
-        print("do this")
+    def endGameEarly(self, questionNum):
+        fillInNum = 10 - (questionNum - 1)
+        with open(self.dataDir, 'a', newline='') as f:
+            writer = csv.writer(f)
+            for i in range(fillInNum):
+                writer.writerow(["XXX","XXX"])
+            writer.writerow(["DNF","DNF"])
     def getHighScore(self):
-        print('test')
-    def writeData(self):
+        with open(self.dataDir) as csvfile:
+            dataArry = csv.reader(csvfile, delimiter=',')
+            highScore = 0
+            rows = list(dataArry)
+            for i in range(len(rows)):
+                if rows[i][0] == '~' and rows[i+12][0] != "DNF" and int(rows[i+12][0]) > highScore:
+                    highScore = int(rows[i+12][0])
+        return highScore
+    def getAverageScore(self):
+        print("test")
+    def getAverageTime(self):
+        print("test")
+    def getFavoriteInits(self):
+        print("test")
+    def winLoss(self):
         print("test")
     def statScreen(self):
         print("test")
     def inDepth(self):
         print("test")
-    def getGameTotals(self):
+    def getGameTotals(self): #total time, questions, and points
         print("test")
 
 

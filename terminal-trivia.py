@@ -55,6 +55,7 @@ def runTrivia():
                     selectedIndex = (int(chr(selectedIndexAscii)) - 1)
                     break
                 if selectedIndexAscii == 101:
+                    gameStats.endGameEarly(i+1)
                     sys.exit()
             end = time.time()
             speed = end - start
@@ -77,9 +78,9 @@ def runTrivia():
                 helpers.clearScreen()
             else:
                 helpers.clearScreen()
-        gameStats.endGameRecord(gameScore.getTotalScore(), 10)
+        gameStats.endGameRecord(gameScore.getTotalScore())
         print("Your Final Score is: " + str(gameScore.getTotalScore()))
-        print("High Score: " )
+        print("High Score: " + str(gameStats.getHighScore()))
         
 
     elif choice == 50:      ## View statistics screen
@@ -96,6 +97,9 @@ def runTrivia():
 
     elif choice == 101:
         sys.exit()
+
+
+
 
 
 
