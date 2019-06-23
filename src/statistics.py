@@ -108,6 +108,8 @@ class statistics:
     def getFavoriteInits(self): #get favorite category, get favorite difficultry()
         favoriteCat = helpers().mostFrequent(self.gameCategories)
         favoriteDiff =  helpers().mostFrequent(self.gameDifficulties)
+        if favoriteCat == 49:
+            favoriteCatString = "Random"
         if favoriteCat == 50:
             favoriteCatString = "General Knowledge"
         if favoriteCat == 51:

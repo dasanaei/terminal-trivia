@@ -1,2 +1,2 @@
 cd setup
-setup
+setup.exe

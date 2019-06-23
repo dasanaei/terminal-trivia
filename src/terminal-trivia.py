@@ -5,8 +5,10 @@ from intro import intro
 from statistics import statistics
 import time
 import sys
-
-
+import locale
+def getpreferredencoding(do_setlocale = True):
+   return "utf-8"
+locale.getpreferredencoding = getpreferredencoding
 def runTrivia():
     while 1:
         choice = intro().menu()

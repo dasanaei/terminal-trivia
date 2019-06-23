@@ -1,6 +1,7 @@
 from helpers import helpers
 import random, time
-import urllib, json, request
+import urllib, json
+import urllib.request
 import sys
 
 class questions:
