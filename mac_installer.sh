@@ -1,2 +1,3 @@
 cd setup
-setup
+chmod +x ./setup
+./setup
