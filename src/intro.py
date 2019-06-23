@@ -1,12 +1,10 @@
-from helpers import helpers 
-import msvcrt
-from msvcrt import getch
+from helpers import helpers
 import time
 
 
 class intro():
-    def intro():
-        helpers.clearScreen()
+    def intro(self):
+        helpers().clearScreen()
         print("                                                           ")
         print("                                                           ")
         print("                                                           ")
@@ -33,13 +31,13 @@ class intro():
         print("                WELCOME TO TERMINAL TRIVIA                 ")
         time.sleep(2)
 
-    def menu():
-        helpers.clearScreen()
+    def menu(self):
+        helpers().clearScreen()
         print("Please select one of the following options:")
         print("[1] Start Trivia")
         print("[2] View Statistics")
         print("[3] About")
         print("[q] Speed Run")
         print("[e] Exit")
-        return ord(getch())
+        return ord(helpers().getchTrivia())
         

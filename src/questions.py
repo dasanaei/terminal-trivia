@@ -1,7 +1,6 @@
 from helpers import helpers
 import random, time
-import urllib, json
-import urllib.request
+import urllib, json, request
 import sys
 
 class questions:
@@ -10,7 +9,7 @@ class questions:
         self.correctAnswerArry = []
         self.wrongAnswerArry = []
         self.valid = True
-        helpers.clearScreen()
+        helpers().clearScreen()
         print("Initializing Game...\n")
         if difficulty == '1':
             newDiff = "easy"
@@ -63,11 +62,11 @@ class questions:
             self.valid = False
             return
         for question in data['results']:
-            self.questionArry.append(helpers.replaceHTML(question['question']))
+            self.questionArry.append(helpers().replaceHTML(question['question']))
        # print("\n", self.questionArry)
 
         for correctAnswer in data['results']:
-            self.correctAnswerArry.append(helpers.replaceHTML(correctAnswer['correct_answer']))
+            self.correctAnswerArry.append(helpers().replaceHTML(correctAnswer['correct_answer']))
         #print("\n", self.correctAnswerArry)
 
         for wrongAnswer in data['results']:
@@ -75,7 +74,7 @@ class questions:
 
         for i in range(len(self.wrongAnswerArry)):
             for j in range(len(self.wrongAnswerArry[i])):
-                self.wrongAnswerArry[i][j] = helpers.replaceHTML(self.wrongAnswerArry[i][j])
+                self.wrongAnswerArry[i][j] = helpers().replaceHTML(self.wrongAnswerArry[i][j])
 
        # print("\n", self.wrongAnswerArry)
         time.sleep(2)
