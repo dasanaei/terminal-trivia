@@ -4,7 +4,7 @@ class score():
         self.totalScore = 0
         self.streak = 0
     def getCorrect(self,answerIndex, selectedIndex):
-        print(answerIndex, selectedIndex)
+        #print(answerIndex, selectedIndex)
         if answerIndex == selectedIndex:
             return 1
         else:

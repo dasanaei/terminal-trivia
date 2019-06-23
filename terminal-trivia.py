@@ -47,7 +47,7 @@ def runTrivia():
         print("Press Any Key to Start the Game")
         getch()
         helpers.clearScreen()
-        gameStats = statistics(chr(category), chr(difficulty))
+        gameStats = statistics(chr(category), chr(difficulty), True)
         for i in range(10):
             print("Q" + str(i+1) + ". " + selectedQuestions.getQuestion(i) + "\n")
             answers = selectedQuestions.getAnswers(i)
@@ -89,13 +89,17 @@ def runTrivia():
         
 
     elif choice == 50:      ## View statistics screen
-        print("test1")
-
+        statScreen = statistics(chr(1), chr(1), False)
+        print(statScreen.getAverageses())
 
 
 
     elif choice == 51:      ## View about screen
-        print("test2")
+        helpers.clearScreen()
+        print("ABOUT:")
+        print("terminal-trivia is created with python, and uses the QuizDB database API for all of its questions.")
+        print("All answer user data is collected and stored locally in the homedirectory/astral-kuarry/trivia/data/data.csv")
+        print("Version 1.0.0")
 
 
 
