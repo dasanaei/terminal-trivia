@@ -135,9 +135,9 @@ class statistics:
         if favoriteDiff == 49:
             favoriteDiffString = "Easy"
         if favoriteDiff == 50:
-            favoriteCatString = "Medium"
+            favoriteDiffString = "Medium"
         if favoriteDiff == 51:
-            favoriteCatString = "Hard"
+            favoriteDiffString = "Hard"
         return [favoriteCatString, favoriteDiffString]
     def winLoss(self): # Get wins, losses, and WL ratio
         return (self.correct / (self.incorrect + self.correct)) * 100
