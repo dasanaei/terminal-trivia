@@ -71,24 +71,28 @@ class statistics:
     def getAverageses(self): #average time, points per question, average score per game
         times = []
         pointsPerQuestionn= []
-        scorePerGame= []
-        timePerGame = []
+        self.scorePerGame= []
+        self.timePerGame = []
+        self.totalQuestions = 0
+        self.totalGames = 0
         statScore = score()
         for i in range(len(self.rows)):
             #print(self.rows[i][0])
             if (self.rows[i][0] == '~' or self.rows[i][0] == 'ï»¿~') and self.rows[i+12][0] != "DNF":
+                self.totalGames = self.totalGames + 1
                 for j in range(10):
                     times.append(float(self.rows[(i+2)+j][1]))
                     pointsPerQuestionn.append(float(statScore.calculateScore(int(self.rows[(i+2)+j][0]), float(self.rows[(i+2)+j][1]))))
-                scorePerGame.append(int(self.rows[(i+12)][0]))
-                timePerGame.append(float(self.rows[(i+12)][1]))
+                    self.totalQuestions = self.totalQuestions + 1
+                self.scorePerGame.append(int(self.rows[(i+12)][0]))
+                self.timePerGame.append(float(self.rows[(i+12)][1]))
         averagePointsPerQuestion = sum(pointsPerQuestionn) / len(pointsPerQuestionn)
         averageTimes = sum(times) / len(times)
-        averageScorePerGame = sum(scorePerGame) / len(scorePerGame)
-        averageTimePerGame = sum(timePerGame) / len(timePerGame)
+        averageScorePerGame = sum(self.scorePerGame) / len(self.scorePerGame)
+        averageTimePerGame = sum(self.timePerGame) / len(self.timePerGame)
         return [averageTimes, averagePointsPerQuestion, averageTimePerGame, averageScorePerGame]
     def getFavoriteInits(self): #get favorite category, get favorite difficultry
-        print("test")
+        print("work in progress")
     def winLoss(self): # Get wins, losses, and WL ratio
         correct = 0
         incorrect = 0
@@ -96,16 +100,14 @@ class statistics:
             #print(self.rows[i][0])
             if (self.rows[i][0] == '~' or self.rows[i][0] == 'ï»¿~') and self.rows[i+12][0] != "DNF":
                 for j in range(10):
-                    print(self.rows[(i+2)+j][0])
+                    #print(self.rows[(i+2)+j][0])
                     if int(self.rows[(i+2)+j][0]) == 1:
                         correct = correct + 1
                     if int(self.rows[(i+2)+j][0]) == 0:
                         incorrect = incorrect + 1
         return [correct, incorrect]
-    def getGameTotals(self): #total time, questions, and points
-        print("test")
-    def statScreen(self): # Print all of this 
-        print("test")
+    def getGameTotals(self): #total time, total points, total questions answered, total games played
+        return [sum(self.timePerGame), sum(self.scorePerGame), self.totalQuestions, self.totalGames]
     def inDepth(self):
         print("test")
         ##TODO
