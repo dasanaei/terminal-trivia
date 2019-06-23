@@ -9,3 +9,14 @@ class helpers():
         return chr(ord(getch()))
     def replaceHTML(string):
         return string.replace("&quot;", "").replace("&#039;", "'").replace("&shy;;", "-").replace("&ldquo;", "\"").replace("&rdquo;", "\"")
+    def mostFrequent(List): 
+        counter = 0
+        num = List[0] 
+        
+        for i in List: 
+            curr_frequency = List.count(i) 
+            if(curr_frequency> counter): 
+                counter = curr_frequency 
+                num = i 
+    
+        return num 

@@ -47,7 +47,7 @@ def runTrivia():
         print("Press Any Key to Start the Game")
         getch()
         helpers.clearScreen()
-        gameStats = statistics(chr(category), chr(difficulty), True)
+        gameStats = statistics(category, difficulty, True)
         for i in range(10):
             print("Q" + str(i+1) + ". " + selectedQuestions.getQuestion(i) + "\n")
             answers = selectedQuestions.getAnswers(i)
@@ -92,7 +92,8 @@ def runTrivia():
         helpers.clearScreen()
         statScreen = statistics(chr(1), chr(1), False)
         if statScreen.checkForData():
-            print(statScreen.getAverageses(), statScreen.winLoss(), statScreen.getGameTotals())
+            print(statScreen.getAverageses(), statScreen.winLoss(), statScreen.getGameTotals(),statScreen.getFavoriteInits())
+            
             
         else:
             print("No data available! Play the game then return.")

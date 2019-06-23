@@ -3,6 +3,7 @@ from pathlib import Path
 import os.path
 from os import path
 from score import score
+from helpers import helpers
 
 class statistics:
     def __init__(self, cat, diff, newGame):
@@ -69,10 +70,12 @@ class statistics:
             return False
         return True
     def getAverageses(self): #average time, points per question, average score per game
-        times = []
-        pointsPerQuestionn= []
+        self.times = []
+        self.pointsPerQuestionn= []
         self.scorePerGame= []
         self.timePerGame = []
+        self.gameCategories = []
+        self.gameDifficulties = []
         self.totalQuestions = 0
         self.totalGames = 0
         statScore = score()
@@ -81,18 +84,20 @@ class statistics:
             if (self.rows[i][0] == '~' or self.rows[i][0] == 'ï»¿~') and self.rows[i+12][0] != "DNF":
                 self.totalGames = self.totalGames + 1
                 for j in range(10):
-                    times.append(float(self.rows[(i+2)+j][1]))
-                    pointsPerQuestionn.append(float(statScore.calculateScore(int(self.rows[(i+2)+j][0]), float(self.rows[(i+2)+j][1]))))
+                    self.times.append(float(self.rows[(i+2)+j][1]))
+                    self.pointsPerQuestionn.append(float(statScore.calculateScore(int(self.rows[(i+2)+j][0]), float(self.rows[(i+2)+j][1]))))
                     self.totalQuestions = self.totalQuestions + 1
                 self.scorePerGame.append(int(self.rows[(i+12)][0]))
                 self.timePerGame.append(float(self.rows[(i+12)][1]))
-        averagePointsPerQuestion = sum(pointsPerQuestionn) / len(pointsPerQuestionn)
-        averageTimes = sum(times) / len(times)
+                self.gameCategories.append(int(self.rows[(i+1)][0]))
+                self.gameDifficulties.append(int(self.rows[(i+1)][1]))
+        averagePointsPerQuestion = sum(self.pointsPerQuestionn) / len(self.pointsPerQuestionn)
+        averageTimes = sum(self.times) / len(self.times)
         averageScorePerGame = sum(self.scorePerGame) / len(self.scorePerGame)
         averageTimePerGame = sum(self.timePerGame) / len(self.timePerGame)
         return [averageTimes, averagePointsPerQuestion, averageTimePerGame, averageScorePerGame]
     def getFavoriteInits(self): #get favorite category, get favorite difficultry
-        print("work in progress")
+        return [helpers.mostFrequent(self.gameCategories), helpers.mostFrequent(self.gameDifficulties)]
     def winLoss(self): # Get wins, losses, and WL ratio
         correct = 0
         incorrect = 0
