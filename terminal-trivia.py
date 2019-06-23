@@ -92,9 +92,8 @@ def runTrivia():
         helpers.clearScreen()
         statScreen = statistics(chr(1), chr(1), False)
         if statScreen.checkForData():
+            statScreen.initStatScreen()
             print(statScreen.getAverageses(), statScreen.winLoss(), statScreen.getGameTotals(),statScreen.getFavoriteInits())
-            
-            
         else:
             print("No data available! Play the game then return.")
 
