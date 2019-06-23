@@ -11,7 +11,7 @@ class statistics:
         self.category = cat
         self.difficulty = diff
         self.dataDir = str(Path.home()) + "/astral-kuarry/trivia/data/data.csv"
-        print(self.dataDir)
+        #print(self.dataDir)
         if newGame:
             with open(self.dataDir) as csvfile:
                 dataArry = csv.reader(csvfile, delimiter=',')
@@ -140,7 +140,7 @@ class statistics:
             favoriteCatString = "Hard"
         return [favoriteCatString, favoriteDiffString]
     def winLoss(self): # Get wins, losses, and WL ratio
-        return [self.correct, self.incorrect]
+        return (self.correct / (self.incorrect + self.correct)) * 100
     def getGameTotals(self): #total time, total points, total questions answered, total games played
         return [sum(self.timePerGame), sum(self.scorePerGame), self.totalQuestions, self.totalGames]
     def inDepth(self):

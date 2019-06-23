@@ -20,3 +20,7 @@ class helpers():
                 num = i 
     
         return num 
+    def format_string(str, min_length):
+        while len(str) < min_length:
+            str += " "
+        return str
