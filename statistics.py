@@ -55,7 +55,6 @@ class statistics:
             for i in range(fillInNum):
                 writer.writerow(["XXX","XXX"])
             writer.writerow(["DNF","DNF"])
-            
     def getHighScore(self):
         with open(self.dataDir) as csvfile:
             dataArry = csv.reader(csvfile, delimiter=',')
@@ -65,6 +64,10 @@ class statistics:
                 if rows[i][0] == '~' and rows[i+12][0] != "DNF" and int(rows[i+12][0]) > highScore:
                     highScore = int(rows[i+12][0])
         return highScore
+    def checkForData(self):
+        if len(self.rows) < 5:
+            return False
+        return True
     def getAverageses(self): #average time, points per question, average score per game
         times = []
         pointsPerQuestionn= []
@@ -72,7 +75,8 @@ class statistics:
         timePerGame = []
         statScore = score()
         for i in range(len(self.rows)):
-            if self.rows[i][0] == '~' and self.rows[i+12][0] != "DNF":
+            #print(self.rows[i][0])
+            if (self.rows[i][0] == '~' or self.rows[i][0] == 'ï»¿~') and self.rows[i+12][0] != "DNF":
                 for j in range(10):
                     times.append(float(self.rows[(i+2)+j][1]))
                     pointsPerQuestionn.append(float(statScore.calculateScore(int(self.rows[(i+2)+j][0]), float(self.rows[(i+2)+j][1]))))
@@ -83,11 +87,21 @@ class statistics:
         averageScorePerGame = sum(scorePerGame) / len(scorePerGame)
         averageTimePerGame = sum(timePerGame) / len(timePerGame)
         return [averageTimes, averagePointsPerQuestion, averageTimePerGame, averageScorePerGame]
-
     def getFavoriteInits(self): #get favorite category, get favorite difficultry
         print("test")
     def winLoss(self): # Get wins, losses, and WL ratio
-        print("test") 
+        correct = 0
+        incorrect = 0
+        for i in range(len(self.rows)):
+            #print(self.rows[i][0])
+            if (self.rows[i][0] == '~' or self.rows[i][0] == 'ï»¿~') and self.rows[i+12][0] != "DNF":
+                for j in range(10):
+                    print(self.rows[(i+2)+j][0])
+                    if int(self.rows[(i+2)+j][0]) == 1:
+                        correct = correct + 1
+                    if int(self.rows[(i+2)+j][0]) == 0:
+                        incorrect = incorrect + 1
+        return [correct, incorrect]
     def getGameTotals(self): #total time, questions, and points
         print("test")
     def statScreen(self): # Print all of this 

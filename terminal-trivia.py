@@ -90,7 +90,12 @@ def runTrivia():
 
     elif choice == 50:      ## View statistics screen
         statScreen = statistics(chr(1), chr(1), False)
-        print(statScreen.getAverageses())
+        if statScreen.checkForData():
+            print(statScreen.getAverageses(), statScreen.winLoss())
+            
+        else:
+            helpers.clearScreen()
+            print("No data available! Play the game then return.")
 
 
 
