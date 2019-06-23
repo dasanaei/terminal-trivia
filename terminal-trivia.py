@@ -92,10 +92,10 @@ def runTrivia():
         if statScreen.checkForData():
             statScreen.initStatScreen()
             print("Terminal-Trivia Statistics:\n")
-            print(helpers.format_string('Current High Score: ' + str(statScreen.getHighScore()), 35) + 'Percent of Questions Correct: ' + '%.3f'%(statScreen.winLoss()) + '%')
-            print('\n' + helpers.format_string('Average Response Time: ' + '%.3f'%(statScreen.getAverageses()[0]) + "s", 35) + 'Average Points Per Question: ' + '%.3f'%(statScreen.getAverageses()[1]))
-            print(helpers.format_string('Average Game Time: ' +  '%.3f'%(statScreen.getAverageses()[2]) + "s", 35) + 'Average Score Per Game: ' + '%.3f'%(statScreen.getAverageses()[3]))
-            print('\n' + helpers.format_string('Total Time Played: ' + '%.3f'%(statScreen.getGameTotals()[0]) + "s", 35) + 'Total Points Gained: ' + str(statScreen.getGameTotals()[1]))
+            print(helpers.format_string('Current High Score: ' + str(statScreen.getHighScore()), 35) + 'Percent of Questions Correct: ' + '%.2f'%(statScreen.winLoss()) + '%')
+            print('\n' + helpers.format_string('Average Response Time: ' + '%.2f'%(statScreen.getAverageses()[0]) + "s", 35) + 'Average Points Per Question: ' + '%.2f'%(statScreen.getAverageses()[1]))
+            print(helpers.format_string('Average Game Time: ' +  '%.2f'%(statScreen.getAverageses()[2]) + "s", 35) + 'Average Score Per Game: ' + '%.2f'%(statScreen.getAverageses()[3]))
+            print('\n' + helpers.format_string('Total Time Played: ' + '%.2f'%(statScreen.getGameTotals()[0]) + "s", 35) + 'Total Points Gained: ' + str(statScreen.getGameTotals()[1]))
             print(helpers.format_string('Total Questions Answered: ' + str(statScreen.getGameTotals()[2]), 35) + 'Total Games Played: ' + str(statScreen.getGameTotals()[3]))
             print('\n' + 'Most Played Category: ' +  statScreen.getFavoriteInits()[0]) 
             print('Most Played Difficulty: ' + (statScreen.getFavoriteInits()[1]))
@@ -104,10 +104,10 @@ def runTrivia():
             print("No data available! Play the game then return.")
     elif choice == 51:      ## View about screen
         helpers.clearScreen()
-        print("ABOUT:")
+        print("ABOUT:\n")
         print("terminal-trivia is created with python, and uses the QuizDB database API for all of its questions.")
-        print("All answer user data is collected and stored locally in the homedirectory/astral-kuarry/trivia/data/data.csv")
-        print("Version 1.0.0")
+        print("All game data is collected and stored locally in the homedirectory/astral-kuarry/trivia/data/data.csv.")
+        print("Version 1.0.0\n")
     elif choice == 101:
         sys.exit()
 
