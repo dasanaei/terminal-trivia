@@ -11,6 +11,7 @@ import (
 )
 
 func main() {
+	fmt.Println(runtime.GOOS)
 	if runtime.GOOS == "windows" {
 		winSetup()
 	} else {
@@ -20,6 +21,7 @@ func main() {
 }
 
 func winSetup() {
+	fmt.Print("test")
 	homeDir, _ := os.UserHomeDir()
 	triviaDir := homeDir + "/astral-kuarry/trivia"
 	dataDir := triviaDir + "/data"

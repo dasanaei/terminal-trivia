@@ -1,4 +1,9 @@
-import platform, sys, tty, termios, os, time
+import platform, sys,  os, time
+
+try:
+    import termios, tty # pylint: disable=import-error
+except ImportError:
+    import sys
 
 class helpers():
     def macGetch(self, char_width=1):
