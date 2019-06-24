@@ -1,8 +1,6 @@
 from helpers import helpers
 import random, time
-import urllib, json
-import urllib.request
-import sys
+import sys, requests
 
 class questions:
     def __init__(self, category, difficulty):
@@ -56,9 +54,8 @@ class questions:
             newCat = '31'
         #print(newCat, newDiff)
         api = "https://opentdb.com/api.php?amount=10&category=" + newCat + "&difficulty=" + newDiff + "&type=multiple"
-        with urllib.request.urlopen(api) as url:
-            data = json.loads(url.read().decode())
-        #print(data['response_code'])
+        data = requests.get(api, verify=False).json()
+        #print(data)
         if data['response_code'] == 1:
             self.valid = False
             return
