@@ -1,4 +1,4 @@
-from msvcrt import getch
+from helpers import helpers
 class score():
     def __init__(self):
         self.totalScore = 0

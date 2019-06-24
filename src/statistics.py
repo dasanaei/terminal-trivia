@@ -1,9 +1,11 @@
+# -*- coding: utf-8 -*-
 import csv
 from pathlib import Path
 import os.path
 from os import path
 from score import score
 from helpers import helpers
+
 
 class statistics:
     def __init__(self, cat, diff, newGame):
@@ -83,7 +85,7 @@ class statistics:
         statScore = score()
         for i in range(len(self.rows)):
             #print(self.rows[i][0])
-            if (self.rows[i][0] == '~' or self.rows[i][0] == 'ï»¿~') and self.rows[i+12][0] != "DNF":
+            if (self.rows[i][0] == '~' or self.rows[i][0] == 'ï»¿~') and self.rows[i+12][0] != "DNF": # coding=utf-8
                 self.totalGames = self.totalGames + 1
                 for j in range(10):
                     self.times.append(float(self.rows[(i+2)+j][1]))
@@ -103,9 +105,11 @@ class statistics:
         averageScorePerGame = sum(self.scorePerGame) / len(self.scorePerGame)
         averageTimePerGame = sum(self.timePerGame) / len(self.timePerGame)
         return [averageTimes, averagePointsPerQuestion, averageTimePerGame, averageScorePerGame]
-    def getFavoriteInits(self): #get favorite category, get favorite difficultry
-        favoriteCat = helpers.mostFrequent(self.gameCategories)
-        favoriteDiff =  helpers.mostFrequent(self.gameDifficulties)
+    def getFavoriteInits(self): #get favorite category, get favorite difficultry()
+        favoriteCat = helpers().mostFrequent(self.gameCategories)
+        favoriteDiff =  helpers().mostFrequent(self.gameDifficulties)
+        if favoriteCat == 49:
+            favoriteCatString = "Random"
         if favoriteCat == 50:
             favoriteCatString = "General Knowledge"
         if favoriteCat == 51:
@@ -146,6 +150,6 @@ class statistics:
     def inDepth(self):
         print("test")
         ##TODO
-    def hardReset():
+    def hardReset(self):
         f = open(str(Path.home()) + "/astral-kuarry/trivia/data/data.csv", "w+")
         f.close()

@@ -6,14 +6,22 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"runtime"
 	"strings"
 )
 
 func main() {
-	winSetup()
+	fmt.Println(runtime.GOOS)
+	if runtime.GOOS == "windows" {
+		winSetup()
+	} else {
+		macSetup()
+	}
+
 }
 
 func winSetup() {
+	fmt.Print("test")
 	homeDir, _ := os.UserHomeDir()
 	triviaDir := homeDir + "/astral-kuarry/trivia"
 	dataDir := triviaDir + "/data"
@@ -26,13 +34,37 @@ func winSetup() {
 	data := strings.Replace(exPath, "setup", "data", -1)
 	CreateDirIfNotExist(triviaDir)
 	CreateDirIfNotExist(dataDir)
-	CopyDir(dist, triviaDir)
+	CopyDir(dist+"/win/dist", triviaDir)
 	CopyDir(data, dataDir)
-	oldLocation := dist + "/terminal-trivia.exe"
+	oldLocation := dist + "/win/dist/terminal-trivia.exe"
 	newLocation := homeDir + "/trivia.exe"
 	desktop := homeDir + "/Desktop/terminal-trivia.exe"
 	CopyFile(oldLocation, newLocation)
 	CopyFile(oldLocation, desktop)
+
+}
+
+func macSetup() {
+	homeDir, _ := os.UserHomeDir()
+	triviaDir := homeDir + "/astral-kuarry/trivia"
+	dataDir := triviaDir + "/data"
+	ex, err := os.Executable()
+	if err != nil {
+		panic(err)
+	}
+	exPath := filepath.Dir(ex)
+	dist := strings.Replace(exPath, "setup", "dist", -1)
+	data := strings.Replace(exPath, "setup", "data", -1)
+	CreateDirIfNotExist(triviaDir)
+	CreateDirIfNotExist(dataDir)
+	CopyDir(dist+"/mac/dist", triviaDir)
+	CopyDir(data, dataDir)
+	oldLocation := dist + "/mac/dist/terminal-trivia"
+	newLocation := homeDir + "/trivia"
+	desktop := homeDir + "/Desktop/terminal-trivia"
+	CopyFile(oldLocation, newLocation)
+	CopyFile(oldLocation, desktop)
+
 }
 
 func getCommandOutput(cmd *exec.Cmd) string {

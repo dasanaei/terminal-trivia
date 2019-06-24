@@ -9,7 +9,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 develop-eggs/
-build/
 downloads/
 eggs/
 .eggs/
@@ -102,5 +101,6 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-#data
-.csv
+#extra
+.vscode
+.DS_Store

@@ -1,7 +1,21 @@
-import urllib, json
-import urllib.request
-from msvcrt import getch
-from statistics import statistics
 
-stat = statistics("category", "difficulty")
-stat.endGameRecord(100000)
+
+import sys, tty, termios
+
+
+
+
+def macGetch(char_width=1):
+    '''get a fixed number of typed characters from the terminal.
+        Linux / Mac only'''
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(fd)
+        ch = sys.stdin.read(char_width)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+    return ch
+
+
+
