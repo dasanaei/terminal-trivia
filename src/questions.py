@@ -1,6 +1,7 @@
 from helpers import helpers
 import random, time
-import sys, requests
+import sys, json
+from urllib.request import urlopen
 
 class questions:
     def __init__(self, category, difficulty):
@@ -54,7 +55,8 @@ class questions:
             newCat = '31'
         #print(newCat, newDiff)
         api = "https://opentdb.com/api.php?amount=10&category=" + newCat + "&difficulty=" + newDiff + "&type=multiple"
-        data = requests.get(api, verify=False).json()
+        jsonurl = urlopen(api)
+        data = json.loads(jsonurl.read()) # <-- read from it
         #print(data)
         if data['response_code'] == 1:
             self.valid = False

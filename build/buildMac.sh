@@ -1,5 +1,7 @@
 cd ..
+rm -rf dist/mac
 cd src
+rm -rf build
 pyinstaller --onefile  terminal-trivia.py
 cd ..
 rm -rf dist/mac
