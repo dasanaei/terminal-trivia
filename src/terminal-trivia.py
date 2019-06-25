@@ -116,7 +116,7 @@ def runTrivia():
 
 
 introduction = intro()
-#introduction.intro()
+introduction.intro()
 while 1:
     runTrivia()
     print("Press e to exit. Press any other key to continue.")
