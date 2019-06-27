@@ -116,7 +116,17 @@ def runTrivia():
 
 
 introduction = intro()
-introduction.intro()
+while 1:
+    print("Welcome to terminal-trivia. \n[1] Enter as Guest \n[2] Enter as Admin")
+    answer = ord(helpers().getchTrivia())
+    if answer == 49:
+        introduction.normalIntro()
+        break
+    elif answer == 50:
+        introduction.adminIntro()
+        break
+    elif answer == 101:
+        sys.exit()
 while 1:
     runTrivia()
     print("Press e to exit. Press any other key to continue.")

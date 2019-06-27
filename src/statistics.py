@@ -154,3 +154,12 @@ class statistics:
     def hardReset(self):
         f = open(str(Path.home()) + "/astral-kuarry/trivia/data/data.csv", "w+")
         f.close()
+    def checkCurruption(self):
+        lastGame = 0
+        gameLength = 0
+        for i in range(len(self.rows)):
+            if self.rows[i] == '~':
+                lastGame = i
+        if len(self.rows) - i != 10:
+            print("Data is Currupted. Reinstall to have access to statistics again")
+

@@ -3,10 +3,14 @@ import time
 import sys
 import unicodedata
 import getpass
+from datetime import datetime
+from statistics import statistics
+
+
 
 
 class intro():    
-    def intro(self):
+    def adminIntro(self):
         helpers().clearScreen()
         
         time.sleep(1)
@@ -286,9 +290,71 @@ class intro():
                 time.sleep(0.4)
         
         time.sleep(.5)
+    def normalIntro(self):
+        helpers().clearScreen()
+        self.bar = "                  " + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588" + u"\u2588"
+        print("access user")
+        time.sleep(0.1)
+        #print(current_time)
+        datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        time.sleep(0.1)
+        print("AQ_SECURE_SYSTEMS_v3.2654.2\n")
+        time.sleep(0.5)
+        user = input("USERNAME: ")
+        dots = "Initializing . . . ."
+        print("Kuarry Terminal Trivia Version 2.1.3")
+        time.sleep(.1)
+        print("\n*** connecting to port_6667 of #channel irc")
+        time.sleep(0.1)
+        print("*** loading .ircr version 2.9+Crlf+F08")
+        time.sleep(0.1)
+        print("*** users on #channel: " + user)
+        for dot in dots:
+            sys.stdout.write(dot)
+            sys.stdout.flush()
+            if dot == '.':
+                time.sleep(0.4)
+            else:
+                time.sleep(0.05)
         
+        helpers().clearScreen()
+        print("                                                           ")
+        print("                                                           ")
+        print("                                                           ")
+        print("                      ``........``                         ")
+        print("                   `.---------------.`                     ")
+        print("                `.------..`.o``..------.`                  ")
+        print("              `.----.`    `dMy     `.----.                 ")
+        print("             `----.      .mMMMh`     `.----`               ")
+        print("            `----`      .mMm/NMd`      .----               ")
+        print("            ----`      -NMh` .mMd`      .---.              ")
+        print("           `----      :NMy    `dMm.      ----              ")
+        print("           `---.     /MMo      `hMN-     ----`             ")
+        print("           `----    +MM/         sMN:    ----              ")
+        print("            ----`  oMMy///////////dMM/  .---.              ")
+        print("            `----`sMMMMMMMMMMMMMMMMMMM/.----``````         ")
+        print("             `----.                   .sMMMMMMMMM/         ")
+        print("              `-----.`             `.---/mMo +MM:          ")
+        print("                `------..```````..-----.``yMmMN:           ")
+        print("                  `.----------------..`    /NN-            ")
+        print("                      ``....-....``         ..             ")
+        print("                                                           ")      
+        print("                                                           ")
+        print("                      LOADING . . .                        ")
+        
+        for d in self.bar:
+            sys.stdout.write(d)
+            sys.stdout.flush()
+            if d == ' ':
+                time.sleep(0.001)
+            else: 
+                time.sleep(0.4)
+        
+        time.sleep(.5)
     def menu(self):
         helpers().clearScreen()
+        warning = statistics(chr(1), chr(1), False)
+        warning.checkCurruption()
         print("Please select one of the following options:")
         print("[1] Start Trivia")
         print("[2] View Statistics")
