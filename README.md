@@ -5,7 +5,7 @@ A trivia game that obtains questions from the TriviaDB API. Each game allows use
 - If on windows, download or clone the repository  and execute the `windows_installation.bat` script. Alternatively, directly install the [executable](https://github.com/dasanaei/terminal-trivia/releases/download/3.0/terminal-trivia.exe).
 - If on Mac, download and run the [installer](https://github.com/dasanaei/terminal-trivia/releases/download/3.0/Mac.Installer.zip). 
 - The installation should automatically place the application in the desktop and the home directory.
-- Run the program by double clicking the icon, or open terminal and run `trivia` (`./trivia` on mac).
+- Run the program by double clicking the icon, or type `trivia` (`./trivia` on mac) in terminal/cmd.
 
 
 
