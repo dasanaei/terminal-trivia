@@ -6,6 +6,7 @@ from statistics import statistics
 import time
 import sys
 import locale
+import datetime
 def getpreferredencoding(do_setlocale = True):
    return "utf-8"
 locale.getpreferredencoding = getpreferredencoding
@@ -91,11 +92,12 @@ def runTrivia():
         statScreen = statistics(chr(1), chr(1), False)
         if statScreen.checkForData():
             statScreen.initStatScreen()
+            timePlayed = int(statScreen.getGameTotals()[0])
             print("Terminal-Trivia Statistics:\n")
             print(helpers().format_string('Current High Score: ' + str(statScreen.getHighScore()), 35) + 'Percent of Questions Correct: ' + '%.2f'%(statScreen.winLoss()) + '%')
             print('\n' + helpers().format_string('Average Response Time: ' + '%.2f'%(statScreen.getAverageses()[0]) + "s", 35) + 'Average Points Per Question: ' + '%.2f'%(statScreen.getAverageses()[1]))
             print(helpers().format_string('Average Game Time: ' +  '%.2f'%(statScreen.getAverageses()[2]) + "s", 35) + 'Average Score Per Game: ' + '%.2f'%(statScreen.getAverageses()[3]))
-            print('\n' + helpers().format_string('Total Time Played: ' + '%.2f'%(statScreen.getGameTotals()[0]) + "s", 35) + 'Total Points Gained: ' + str(statScreen.getGameTotals()[1]))
+            print('\n' + helpers().format_string('Total Time Played: ' + str(datetime.timedelta(seconds=timePlayed)), 35) + 'Total Points Gained: ' + str(statScreen.getGameTotals()[1]))
             print(helpers().format_string('Total Questions Answered: ' + str(statScreen.getGameTotals()[2]), 35) + 'Total Games Played: ' + str(statScreen.getGameTotals()[3]))
             print('\n' + 'Most Played Category: ' +  statScreen.getFavoriteInits()[0]) 
             print('Most Played Difficulty: ' + (statScreen.getFavoriteInits()[1]))
@@ -116,7 +118,17 @@ def runTrivia():
 
 
 introduction = intro()
-#introduction.intro()
+while 1:
+    print("Welcome to terminal-trivia. \n[1] Enter as Guest \n[2] Enter as Admin")
+    answer = ord(helpers().getchTrivia())
+    if answer == 49:
+        introduction.normalIntro()
+        break
+    elif answer == 50:
+        introduction.adminIntro()
+        break
+    elif answer == 101:
+        sys.exit()
 while 1:
     runTrivia()
     print("Press e to exit. Press any other key to continue.")

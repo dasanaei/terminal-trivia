@@ -11,6 +11,7 @@ class questions:
         self.valid = True
         helpers().clearScreen()
         print("Initializing Game...\n")
+        print("Warning: exiting console without pressing [e] during game will currupt data.")
         if difficulty == '1':
             newDiff = "easy"
         elif difficulty == '2':
