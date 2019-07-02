@@ -353,8 +353,8 @@ class intro():
         time.sleep(.5)
     def menu(self):
         helpers().clearScreen()
-        warning = statistics(chr(1), chr(1), False)
-        warning.checkCurruption()
+            # warning = statistics(chr(1), chr(1), False)
+           #warning.checkCurruption()
         print("Please select one of the following options:")
         print("[1] Start Trivia")
         print("[2] View Statistics")
